@@ -1,0 +1,140 @@
+itiss@itiss:~$ mkdir exp
+itiss@itiss:~$ git clone https://github.com/Itiss-12/exp.git
+Cloning into 'exp'...
+warning: You appear to have cloned an empty repository.
+itiss@itiss:~$ ls
+abc                   docker_jenkins_first  git_practice          Pictures                   terraform_5
+ansible               docker_networking     hello_python          pp                         terraform_6
+aws                   Documents             java_docker_compose   Public                     terraform_7
+awscliv2.zip          Downloads             jetha_babita          puppet8-release-focal.deb  test
+day2                  empty                 jod_ghatav            rolling_final              Videos
+demo                  exp                   maytera               rolling_initial            webpages
+Desktop               fardin                minikube-linux-amd64  snap                       website
+docker_compose        fir                   Music                 Templates                  websites
+docker_compose_files  flask_app             my_ansible_playbooks  terraform_1
+docker-compose.yml    git_lab               my_pods               terraform_2
+docker_jenkins_demo   git_lab_remote        pem                   terraform_4
+itiss@itiss:~$ cd exp
+itiss@itiss:~/exp$ ls
+itiss@itiss:~/exp$ vim hello.py
+itiss@itiss:~/exp$ git config --global user.name "Itiss-12"
+itiss@itiss:~/exp$ git config --global user.email "kaushalkamde04@gmail.com"
+itiss@itiss:~/exp$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        hello.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+itiss@itiss:~/exp$ git add .
+itiss@itiss:~/exp$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   hello.py
+
+itiss@itiss:~/exp$ git commit -m "first"
+[main (root-commit) 0e2e87a] first
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.py
+itiss@itiss:~/exp$ git branch
+* main
+itiss@itiss:~/exp$ git push -u originb main
+fatal: 'originb' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+itiss@itiss:~/exp$ git push -u origin main
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 228 bytes | 228.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Itiss-12/exp.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+itiss@itiss:~/exp$ ls
+hello.py
+itiss@itiss:~/exp$ vim hello.py
+itiss@itiss:~/exp$ git add .
+itiss@itiss:~/exp$ git commit -m "second"
+[main 754b760] second
+ 1 file changed, 1 insertion(+)
+itiss@itiss:~/exp$ git push -u origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 270 bytes | 270.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Itiss-12/exp.git
+   0e2e87a..754b760  main -> main
+branch 'main' set up to track 'origin/main'.
+itiss@itiss:~/exp$ git revert 0e2e87a510d950fc4e4b5bfe1f6b89fc40f1e887
+CONFLICT (modify/delete): hello.py deleted in (empty tree) and modified in HEAD.  Version HEAD of hello.py left in tree.
+error: could not revert 0e2e87a... first
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git revert --continue".
+hint: You can instead skip this commit with "git revert --skip".
+hint: To abort and get back to the state before "git revert",
+hint: run "git revert --abort".
+itiss@itiss:~/exp$ vim em.py
+itiss@itiss:~/exp$ git add .
+itiss@itiss:~/exp$ git commit -m "th"
+[main a3bc3ca] th
+ 1 file changed, 1 insertion(+)
+ create mode 100644 em.py
+itiss@itiss:~/exp$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 272 bytes | 272.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Itiss-12/exp.git
+   754b760..a3bc3ca  main -> main
+itiss@itiss:~/exp$ vim em.py
+itiss@itiss:~/exp$ git revert 754b7602e22a7103df29818f0b7f439e0d1fd41e
+[main fa97a08] Revert "second"
+ 1 file changed, 1 deletion(-)
+itiss@itiss:~/exp$ ls
+em.py  hello.py
+itiss@itiss:~/exp$ git logs
+git: 'logs' is not a git command. See 'git --help'.
+
+The most similar command is
+        log
+itiss@itiss:~/exp$ git log
+commit fa97a08b4fddd346bdb584f387507e2a4cefa048 (HEAD -> main)
+Author: Itiss-12 <kaushalkamde04@gmail.com>
+Date:   Wed May 6 20:21:04 2026 +0530
+
+    Revert "second"
+    
+    This reverts commit 754b7602e22a7103df29818f0b7f439e0d1fd41e.
+
+commit a3bc3caf08d3d5b35f55ec03e2706cd5b96df29c (origin/main)
+Author: Itiss-12 <kaushalkamde04@gmail.com>
+Date:   Wed May 6 20:20:09 2026 +0530
+
+    th
+
+commit 754b7602e22a7103df29818f0b7f439e0d1fd41e
+Author: Itiss-12 <kaushalkamde04@gmail.com>
+Date:   Wed May 6 20:17:11 2026 +0530
+
+    second
+
+commit 0e2e87a510d950fc4e4b5bfe1f6b89fc40f1e887
+Author: Itiss-12 <kaushalkamde04@gmail.com>
+Date:   Wed May 6 20:15:44 2026 +0530
+
+    first
+itiss@itiss:~/exp$ ls
+em.py  hello.py
+itiss@itiss:~/exp$ 
