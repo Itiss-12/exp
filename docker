@@ -1,0 +1,466 @@
+# Docker Cheat Sheet (Important Commands with Examples)
+
+---
+
+# 1. Docker Version & Info
+
+## Check Docker Version
+
+```bash id="0xhz8m"
+docker --version
+```
+
+---
+
+## Detailed Docker Information
+
+```bash id="szs08s"
+docker info
+```
+
+---
+
+# 2. Images Commands
+
+## List Images
+
+```bash id="ztbjlwm"
+docker images
+```
+
+---
+
+## Pull Image from Docker Hub
+
+```bash id="yw9c6v"
+docker pull nginx
+```
+
+Example:
+
+```bash id="h7v0cm"
+docker pull ubuntu
+```
+
+---
+
+## Remove Image
+
+```bash id="6nqjj8"
+docker rmi image_name
+```
+
+Example:
+
+```bash id="4evd3j"
+docker rmi nginx
+```
+
+Force remove:
+
+```bash id="r4f3mf"
+docker rmi -f nginx
+```
+
+---
+
+# 3. Container Commands
+
+## Run Container
+
+```bash id="kmjlwm"
+docker run nginx
+```
+
+---
+
+## Run in Background (Detached Mode)
+
+```bash id="jz3yxr"
+docker run -d nginx
+```
+
+---
+
+## Run with Custom Name
+
+```bash id="vrjlwm"
+docker run --name mycontainer nginx
+```
+
+---
+
+## Port Mapping
+
+```bash id="6r1sdp"
+docker run -d -p 8080:80 nginx
+```
+
+Meaning:
+
+* Host Port = 8080
+* Container Port = 80
+
+---
+
+## Interactive Terminal Mode
+
+```bash id="30w2zx"
+docker run -it ubuntu bash
+```
+
+---
+
+## List Running Containers
+
+```bash id="1mlmtg"
+docker ps
+```
+
+---
+
+## List All Containers
+
+```bash id="l3cq3v"
+docker ps -a
+```
+
+---
+
+## Stop Container
+
+```bash id="5zj3qy"
+docker stop container_id
+```
+
+---
+
+## Start Container
+
+```bash id="g5lm0x"
+docker start container_id
+```
+
+---
+
+## Restart Container
+
+```bash id="vchx7w"
+docker restart container_id
+```
+
+---
+
+## Remove Container
+
+```bash id="j0pksg"
+docker rm container_id
+```
+
+Force remove:
+
+```bash id="sxg4v8"
+docker rm -f container_id
+```
+
+---
+
+# 4. Execute Commands Inside Container
+
+## Open Bash Shell
+
+```bash id="2dpjlwm"
+docker exec -it container_id bash
+```
+
+---
+
+## Run Linux Command
+
+```bash id="kzqjaf"
+docker exec container_id ls
+```
+
+---
+
+# 5. Logs & Monitoring
+
+## View Logs
+
+```bash id="xly2qh"
+docker logs container_id
+```
+
+---
+
+## Live Logs
+
+```bash id="zsq0an"
+docker logs -f container_id
+```
+
+---
+
+## Running Processes
+
+```bash id="2pqylv"
+docker top container_id
+```
+
+---
+
+## Container Resource Usage
+
+```bash id="hslm4o"
+docker stats
+```
+
+---
+
+# 6. Dockerfile Commands
+
+## Build Image
+
+```bash id="y7ymoq"
+docker build -t myapp .
+```
+
+---
+
+## Run Built Image
+
+```bash id="o8skla"
+docker run myapp
+```
+
+---
+
+# Example Dockerfile
+
+```dockerfile id="5uq28a"
+FROM ubuntu
+RUN apt update
+CMD ["echo", "Hello Docker"]
+```
+
+---
+
+# 7. Volume Commands
+
+## Create Volume
+
+```bash id="iqqvql"
+docker volume create myvolume
+```
+
+---
+
+## List Volumes
+
+```bash id="6hqb2l"
+docker volume ls
+```
+
+---
+
+## Attach Volume
+
+```bash id="e2cb2m"
+docker run -v myvolume:/data ubuntu
+```
+
+---
+
+# 8. Network Commands
+
+## List Networks
+
+```bash id="1tbz2m"
+docker network ls
+```
+
+---
+
+## Create Network
+
+```bash id="fxjlwm"
+docker network create mynetwork
+```
+
+---
+
+## Run Container on Network
+
+```bash id="6t0bn5"
+docker run --network=mynetwork nginx
+```
+
+---
+
+# 9. Docker Compose Commands
+
+## Start Services
+
+```bash id="1u6vje"
+docker compose up
+```
+
+Background:
+
+```bash id="axf8lf"
+docker compose up -d
+```
+
+---
+
+## Stop Services
+
+```bash id="frh0du"
+docker compose down
+```
+
+---
+
+## View Running Compose Containers
+
+```bash id="uyryll"
+docker compose ps
+```
+
+---
+
+# Example docker-compose.yml
+
+```yaml id="nbm9w7"
+version: '3'
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+```
+
+---
+
+# 10. Save & Share Images
+
+## Login to Docker Hub
+
+```bash id="qvjlwm"
+docker login
+```
+
+---
+
+## Tag Image
+
+```bash id="tb9jlwm"
+docker tag myapp username/myapp:v1
+```
+
+---
+
+## Push Image
+
+```bash id="zjlwm0"
+docker push username/myapp:v1
+```
+
+---
+
+# 11. Cleanup Commands
+
+## Remove Stopped Containers
+
+```bash id="9yav6v"
+docker container prune
+```
+
+---
+
+## Remove Unused Images
+
+```bash id="0i7v3u"
+docker image prune
+```
+
+---
+
+## Remove Everything Unused
+
+```bash id="hrjlwm"
+docker system prune
+```
+
+Force:
+
+```bash id="ckw7zn"
+docker system prune -a
+```
+
+---
+
+# 12. Important Exam Commands
+
+| Task                     | Command                   |
+| ------------------------ | ------------------------- |
+| Check running containers | `docker ps`               |
+| Pull image               | `docker pull nginx`       |
+| Run container            | `docker run nginx`        |
+| Stop container           | `docker stop id`          |
+| Remove container         | `docker rm id`            |
+| Remove image             | `docker rmi nginx`        |
+| Build image              | `docker build -t app .`   |
+| View logs                | `docker logs id`          |
+| Execute command          | `docker exec -it id bash` |
+| Push image               | `docker push repo/image`  |
+
+---
+
+# 13. Important MCQ Points
+
+* Docker uses **containerization**
+* Containers are lightweight
+* Dockerfile used to build images
+* Docker Hub stores images
+* `docker ps` → running containers
+* `docker images` → available images
+* `docker compose` manages multi-container apps
+* `-d` means detached/background mode
+* `-p` means port mapping
+* `-it` means interactive terminal
+
+---
+
+# 14. Quick Workflow Example
+
+## Pull Image
+
+```bash id="zkjlwm"
+docker pull nginx
+```
+
+## Run Container
+
+```bash id="wjlwm0"
+docker run -d -p 8080:80 nginx
+```
+
+## Check Running Containers
+
+```bash id="jlwm11"
+docker ps
+```
+
+## Stop Container
+
+```bash id="jlwm12"
+docker stop container_id
+```
+
+## Remove Container
+
+```bash id="jlwm13"
+docker rm container_id
+```
