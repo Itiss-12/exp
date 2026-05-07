@@ -1,0 +1,108 @@
+1. Configure Git (First Time Setup)
+
+git config --global user.name "Kaushal"
+git config --global user.email "kaushal@example.com"
+
+Check config:
+
+git config --list
+
+2. Create a Repository
+Create New Folder + Initialize Git
+mkdir myproject
+cd myproject
+git init
+
+3. Check Status
+git status
+
+4. Add Files
+Add Single File
+git add app.py
+Add All Files
+git add .
+
+5. Commit Changes
+git commit -m "Added login feature"
+
+6. View Commit History
+git log
+
+Short version:
+
+git log --oneline
+
+
+7. Clone Existing GitHub Repository
+git clone https://github.com/user/project.git
+
+8. Connect Local Repo to GitHub
+Add Remote Repository
+git remote add origin https://github.com/user/repo.git
+
+Check remote:
+
+git remote -v
+
+9. Push Code to GitHub
+First Push
+git push -u origin main
+Normal Push After That
+git push
+
+10. Pull Latest Code
+git pull
+
+12. Branch Commands
+
+Create Branch
+
+git branch feature-login
+Switch Branch
+git checkout feature-login
+
+OR modern command:
+
+git switch feature-login
+Create + Switch Together
+git checkout -b feature-login
+
+
+
+13. Merge Branch
+
+Go to main branch:
+
+git checkout main
+
+Merge:
+
+git merge feature-login
+14. Delete Branch
+git branch -d feature-login
+
+
+5. Undo Changes
+Undo Unstaged Changes
+git restore file.txt
+Remove from Staging
+git restore --staged file.txt
+16. Remove File
+git rm file.txt
+
+Commit after removing:
+
+git commit -m "Removed file"
+17. Rename File
+git mv old.txt new.txt
+18. Check Difference
+git diff
+19. Ignore Files
+
+Create .gitignore
+
+Example:
+
+node_modules/
+*.log
+.env
