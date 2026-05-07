@@ -1,0 +1,358 @@
+# Git Cheat Sheet — Branch, Merge, Revert & Stash
+
+---
+
+# 1. Branch Commands
+
+## Check Current Branch
+
+```bash id="6m3bvy"
+git branch
+```
+
+Current branch has `*`
+
+Example:
+
+```txt id="9eyb5l"
+* main
+  feature-login
+```
+
+---
+
+## Create New Branch
+
+```bash id="w97t2n"
+git branch feature-login
+```
+
+---
+
+## Switch Branch
+
+```bash id="s5y8rb"
+git checkout feature-login
+```
+
+Modern command:
+
+```bash id="1p06ga"
+git switch feature-login
+```
+
+---
+
+## Create + Switch Together
+
+```bash id="uz1r3u"
+git checkout -b feature-login
+```
+
+OR
+
+```bash id="wzm6kv"
+git switch -c feature-login
+```
+
+---
+
+## Delete Branch
+
+```bash id="07sl03"
+git branch -d feature-login
+```
+
+Force delete:
+
+```bash id="b36jgt"
+git branch -D feature-login
+```
+
+---
+
+# Example Workflow
+
+```bash id="iv4i1w"
+git checkout -b new-feature
+```
+
+Edit files → commit changes.
+
+---
+
+# 2. Merge Commands
+
+## Merge Branch into Current Branch
+
+```bash id="9vttsq"
+git merge feature-login
+```
+
+---
+
+# Merge Example
+
+## Step 1: Create Branch
+
+```bash id="rz6e90"
+git checkout -b feature
+```
+
+---
+
+## Step 2: Add Changes
+
+```bash id="ow72zq"
+git add .
+git commit -m "Added feature"
+```
+
+---
+
+## Step 3: Go to Main
+
+```bash id="0lkk7k"
+git checkout main
+```
+
+---
+
+## Step 4: Merge
+
+```bash id="v84bf7"
+git merge feature
+```
+
+---
+
+# Merge Conflict
+
+Occurs when same file/line changed in both branches.
+
+Git shows:
+
+```txt id="9h7mzw"
+CONFLICT (content): Merge conflict in app.py
+```
+
+---
+
+# Resolve Conflict
+
+Edit file manually.
+
+Then:
+
+```bash id="bvf6y4"
+git add .
+git commit -m "Resolved conflict"
+```
+
+---
+
+# Abort Merge
+
+```bash id="9l4crg"
+git merge --abort
+```
+
+---
+
+# 3. Revert Commands
+
+Used to safely undo commits.
+
+---
+
+## Check Commit History
+
+```bash id="q4qsk2"
+git log --oneline
+```
+
+Example:
+
+```txt id="0u1rtt"
+a1b2c3 Added login
+d4e5f6 Fixed bug
+```
+
+---
+
+## Revert Latest Commit
+
+```bash id="cf73qn"
+git revert HEAD
+```
+
+---
+
+## Revert Specific Commit
+
+```bash id="3t8s1f"
+git revert a1b2c3
+```
+
+---
+
+# Revert vs Reset
+
+| Command      | Meaning                |
+| ------------ | ---------------------- |
+| `git revert` | Safe undo              |
+| `git reset`  | Removes commit history |
+
+---
+
+## Soft Reset
+
+Keeps changes:
+
+```bash id="q9l9fp"
+git reset --soft HEAD~1
+```
+
+---
+
+## Hard Reset
+
+Deletes changes permanently:
+
+```bash id="eqkq1s"
+git reset --hard HEAD~1
+```
+
+⚠ Dangerous
+
+---
+
+# 4. Stash Commands
+
+`git stash` temporarily saves unfinished work.
+
+Useful when:
+
+* switching branches quickly
+* pulling latest changes
+* temporary backup
+
+---
+
+## Save Current Changes
+
+```bash id="ofsq4r"
+git stash
+```
+
+---
+
+## Save with Message
+
+```bash id="bz8q4l"
+git stash save "login page work"
+```
+
+---
+
+## View Stashes
+
+```bash id="ivg58u"
+git stash list
+```
+
+Example:
+
+```txt id="7j0v9u"
+stash@{0}: WIP on main
+stash@{1}: login page work
+```
+
+---
+
+## Apply Stash
+
+```bash id="g1jsy3"
+git stash apply
+```
+
+Specific stash:
+
+```bash id="4z2l8q"
+git stash apply stash@{0}
+```
+
+---
+
+## Apply + Remove Stash
+
+```bash id="d2n3ye"
+git stash pop
+```
+
+---
+
+## Delete Stash
+
+```bash id="4swlg0"
+git stash drop stash@{0}
+```
+
+---
+
+## Clear All Stashes
+
+```bash id="bh1fpo"
+git stash clear
+```
+
+---
+
+# Stash Example
+
+## Before Switching Branch
+
+```bash id="zbyv8v"
+git stash
+git checkout main
+```
+
+---
+
+## Return Work Later
+
+```bash id="xjlwm0"
+git stash pop
+```
+
+Your unfinished changes return.
+
+---
+
+# Quick Revision Table
+
+| Task            | Command                   |
+| --------------- | ------------------------- |
+| Create branch   | `git branch name`         |
+| Switch branch   | `git checkout name`       |
+| Create + switch | `git checkout -b name`    |
+| Merge branch    | `git merge name`          |
+| Abort merge     | `git merge --abort`       |
+| Revert commit   | `git revert HEAD`         |
+| Soft reset      | `git reset --soft HEAD~1` |
+| Hard reset      | `git reset --hard HEAD~1` |
+| Save stash      | `git stash`               |
+| View stash      | `git stash list`          |
+| Apply stash     | `git stash apply`         |
+| Pop stash       | `git stash pop`           |
+
+---
+
+# Most Important MCQ Points
+
+* Merge combines branches
+* Merge conflict happens when same lines change
+* Revert creates new undo commit
+* Reset changes commit history
+* Stash temporarily saves uncommitted work
+* `git stash pop` = apply + delete stash
