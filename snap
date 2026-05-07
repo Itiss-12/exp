@@ -1,0 +1,59 @@
+Llic sg)  launch instance
+
+
+
+Create private instance follow same steps but disable auto assign ipv4 select security group of private select private subnet  launch instance 
+
+Connect connect using public ip connect
+
+
+
+Copy key in this terminal vim key.pem
+
+chmod 400 key.pem
+
+ssh -i key.pem ubuntu@ip of private instnce
+
+
+
+Create file vim file.txt
+
+Copy to private instance. scp -r -i key.pem file.txt ubuntu@ip of private 
+
+
+
+
+
+Create directory in private instance mkdir -p /home/ubuntu 
+
+cd /home
+
+ls
+
+exit
+
+——————————————————-
+
+
+
+Snapshot
+
+
+
+Go to instance create snapshot create image from snapshot give name click on ami launch instance from ami give name keypair launch instance 
+
+Go to instNce connect copy example and paste in terminal or directly connect
+
+
+
+Click on instances select instance you want to create volume of and go to actions select image and templates select create image add name create image … go to images select image you created and launch instance from ami
+
+Give name and launch instance 
+
+
+
+Go to that instance and connect and connect this will open a terminal 
+
+Here cd /home/ubuntu where you created file on the public instance
+
+ls
